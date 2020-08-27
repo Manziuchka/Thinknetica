@@ -9,10 +9,10 @@ name = gets.chomp
 puts "Enter your height"
 height = gets.chomp.to_i
 
-weight = (height-110)*1.15
+weight = (height - 110) * 1.15
 
 if weight < 0
-	puts "Your weight is already perfect"
+  puts "Your weight is already perfect"
 else
-	puts "#{name}, your perfect weight is #{weight}"
+  puts "#{name}, your perfect weight is #{weight}"
 end

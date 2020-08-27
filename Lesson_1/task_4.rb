@@ -10,18 +10,19 @@ a = gets.to_f
 b = gets.to_f
 c = gets.to_f
 
-d = b**2 - 4*a*c
+d = b**2 - 4 * a * c
 
 puts "Дискриминант равен #{d}"
 
-if d.negative?
-	puts "Корней нет"
-elsif d==0
-	x1 = (-b + Math.sqrt(d)) / (2 * a)
-	puts "Корень = #{x1}"
+square = Math.sqrt(d)
 
+if d.negative?
+  puts "Корней нет"
+elsif d == 0
+  x1 = (-b + square) / (2 * a)
+  puts "Корень = #{x1}"
 else
-	x1 = (-b + Math.sqrt(d)) / (2 * a)
-	x2 = (-b - Math.sqrt(d)) / (2 * a)
-	puts "Корень 1 = #{x1} Корень 2 = #{x2}"
+  x1 = (-b + square) / (2 * a)
+  x2 = (-b - square) / (2 * a)
+  puts "Корень 1 = #{x1} Корень 2 = #{x2}"
 end
