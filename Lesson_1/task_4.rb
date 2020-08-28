@@ -14,15 +14,14 @@ d = b**2 - 4 * a * c
 
 puts "Дискриминант равен #{d}"
 
-square = Math.sqrt(d)
-
-if d.negative?
-  puts "Корней нет"
-elsif d == 0
+if d >= 0 
+  square = Math.sqrt(d)
   x1 = (-b + square) / (2 * a)
-  puts "Корень = #{x1}"
+  puts "Корень 1 = #{x1}"
+  if d > 0
+    x2 = (-b - square) / (2 * a)
+    puts "Корень 2 = #{x1}"
+  end
 else
-  x1 = (-b + square) / (2 * a)
-  x2 = (-b - square) / (2 * a)
-  puts "Корень 1 = #{x1} Корень 2 = #{x2}"
+  puts "Корней нет"
 end
