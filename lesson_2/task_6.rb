@@ -24,13 +24,13 @@ loop do
   puts "Write quantity:"
   quantity = gets.to_f
   
-  basket[product] = {'price' => price, 'quantity' => quantity}
+  basket[product] = {price: price, quantity: quantity}
 end
 
 puts basket
 
 basket.each do |product, price| 
-  puts "Total price for the product #{product} = #{tmp = price['price'] * price['quantity']}"
+  puts "Total price for the product #{product} = #{tmp = price[:price] * price[:quantity]}"
   sum += tmp
 end
 

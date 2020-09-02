@@ -3,11 +3,8 @@
 arr = [0, 1]
 
 loop do
-  if 100 > tmp = arr[-1] + arr[-2]
-    arr << tmp
-  else
-    break
-  end
+  break if 100 < tmp = arr.last(2).sum
+  arr << tmp
 end
 
 puts arr

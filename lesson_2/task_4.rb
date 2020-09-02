@@ -2,14 +2,10 @@
 
 alphabet = ('a'..'z').to_a
 
-vowels = ['a', 'e', 'i', 'o', 'u', 'y'].to_a
+vowels = ['a', 'e', 'i', 'o', 'u', 'y']
 
 hash = {}
 
-alphabet.each.with_index(1) do |letter, index| 
-  if vowels.include?(letter)
-    hash[letter] = index
-  end
-end
+alphabet.each.with_index(1) { |letter, index| hash[letter] = index if vowels.include?(letter)}
 
 puts hash

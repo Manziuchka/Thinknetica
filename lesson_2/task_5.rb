@@ -12,10 +12,6 @@ days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 days[1] = 29 if (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
 
-if month == 1 
-  number = day 
-else
-  number = days[0..month-2].sum + day
-end
+number = days.take(month - 1).sum + day
 
 puts "Порядковый номер даты равен #{number}"
