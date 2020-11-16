@@ -1,4 +1,7 @@
+require_relative 'manufacturer'
+
 class Train
+  include Manufacturer
   attr_accessor :speed
   attr_reader :carriages, :station, :type, :route, :number
 
@@ -6,6 +9,14 @@ class Train
     @number = number
     @carriages = []
     @speed = 0
+  end
+
+  class << self
+    attr_reader :trains
+    
+    def find(number)
+      trains.key?(number) ? trains[number] : nill
+    end
   end
 
   def boost_speed

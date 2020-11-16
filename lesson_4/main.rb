@@ -6,6 +6,7 @@ require_relative 'cargo_train'
 require_relative 'carriages'
 require_relative 'passanger_carriages'
 require_relative 'cargo_carriages'
+require_relative 'manufacturer'
 
 class Main
 
@@ -73,8 +74,11 @@ class Main
   end
 
   def show_all_stations
-    @stations.each {|station| puts station.name}
+    puts Station.all
   end
+  # def show_all_stations
+  #   @stations.each {|station| puts station.name}
+  # end
 
   def create_train
     puts "Для создания пассажирского поезда нажмите 1. Для создания грузового поезда нажмите 2"
@@ -145,7 +149,7 @@ class Main
     train.delete_carriages(train.carriages[carriage_index-1])
     puts "Колличество вагонов: #{train.carriages}"
   end
-
+  
   def move_next_station
     train = choose_train
     puts "Текущая станция: #{train.current_station.name}"
