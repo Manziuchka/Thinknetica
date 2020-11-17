@@ -62,7 +62,6 @@ class Main
         move_next_station
       when "move_previous_station"
         move_previous_station
-      end
     end
   end
 
@@ -76,9 +75,6 @@ class Main
   def show_all_stations
     puts Station.all
   end
-  # def show_all_stations
-  #   @stations.each {|station| puts station.name}
-  # end
 
   def create_train
     puts "Для создания пассажирского поезда нажмите 1. Для создания грузового поезда нажмите 2"

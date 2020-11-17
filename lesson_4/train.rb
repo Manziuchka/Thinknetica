@@ -1,26 +1,34 @@
 require_relative 'manufacturer'
+require_relative 'instance_counter'
 
 class Train
   include Manufacturer
+  include InstanceCounter
   attr_accessor :speed
   attr_reader :carriages, :station, :type, :route, :number
 
   def initialize(number)
-    @number = number
+    @number = number.to_i
     @carriages = []
     @speed = 0
+    register_instance
   end
 
   class << self
     attr_reader :trains
     
     def find(number)
-      trains.key?(number) ? trains[number] : nill
+     ObjectSpace.each_object(self) {|train| return train if train.number == number} 
+     nil
     end
   end
 
   def boost_speed
     @speed += 10
+  end
+ 
+  def find(number)
+    self.class.find(number)
   end
 
   def stop_train
