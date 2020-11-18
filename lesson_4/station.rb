@@ -7,11 +7,25 @@ class Station
   def initialize(name)
     @name = name
     @trains = []
+    self.class.add_station(self)
     register_instance
   end
+ 
+  class << self
+    attr_reader :stations
+  
+    def add_station(station)
+      @@stations ||= []
+      @@stations << station
+    end
+  
+    def all_stations
+      @@stations
+    end
+  end
 
-  def self.all
-    ObjectSpace.each_object(self).to_a
+  def all_stations
+    self.class.all_stations
   end
 
   def add_train(train)

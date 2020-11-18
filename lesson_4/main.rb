@@ -62,6 +62,7 @@ class Main
         move_next_station
       when "move_previous_station"
         move_previous_station
+      end
     end
   end
 
