@@ -11,21 +11,20 @@ class Train
     @number = number.to_i
     @carriages = []
     @speed = 0
-    self.class.add_new_train(self)
+    self.class.add_new_train(self, number)
     register_instance
   end
 
   class << self
     attr_reader :trains
 
-    def add_new_train(train)
-      @@trains ||= []
-      @@trains << train
+    def add_new_train(train, number)
+      @@trains ||= {}
+      @@trains[number] = train
     end
     
     def find(number)
-      @@trains.each{|train| return train if train.number == number}
-      nil
+      @@trains.key?(number) ? @@trains[number] : nil
     end
   end
 
