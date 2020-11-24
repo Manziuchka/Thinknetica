@@ -3,9 +3,11 @@ require_relative 'instance_counter'
 class Station 
   include InstanceCounter
   attr_reader :name, :trains
+  NAME = /^[a-z]{2,}/i
         
   def initialize(name)
     @name = name
+    validate!
     @trains = []
     self.class.add_station(self)
     register_instance
@@ -24,6 +26,12 @@ class Station
     end
   end
 
+  def valid?
+    validate!
+    rescue
+      false
+  end
+
   def all_stations
     self.class.all_stations
   end
@@ -40,4 +48,9 @@ class Station
     @trains.select {|train| train.type == type}
   end
 
+  protected
+  
+  def validate!
+   raise StandardError, "Station name must include a-z characters" if name !~ NAME
+  end
 end 

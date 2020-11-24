@@ -17,7 +17,7 @@ class Main
   end
 
   def help
-    puts "Создать пассажирский поезд: create_train"
+    puts "Создать поезд: create_train"
     puts "Создать станцию: create_station"
     puts "Показать все станции: show_all_stations"
     puts "Показать все поезда: show_all_trains"
@@ -71,6 +71,9 @@ class Main
     station = Station.new(gets.chomp)
     @stations << station
     station
+    rescue StandardError => e
+      puts e.message
+    retry
   end
 
   def show_all_stations
@@ -81,13 +84,25 @@ class Main
     puts "Для создания пассажирского поезда нажмите 1. Для создания грузового поезда нажмите 2"
     choose = gets.chomp.to_i
     if choose == 1
-      puts "Введите номер пассажирского поезда"
-      number = gets.chomp
-      @trains << PassangerTrain.new(number)
-      elsif choose == 2
-        puts "Введите номер грузового поезда"
+      begin
+        puts "Введите номер пассажирского поезда"
         number = gets.chomp
-        @trains << CargoTrain.new(number)
+        @trains << PassangerTrain.new(number)
+        puts "Пассажирский поезд создан"
+        rescue StandardError => e
+          puts e.message
+          retry
+      end
+      elsif choose == 2
+        begin
+          puts "Введите номер грузового поезда"
+          number = gets.chomp
+          @trains << CargoTrain.new(number)
+          puts "Грузовой поезд создан"
+          rescue StandardError => e
+           puts e.message
+           retry
+        end
       else 
         puts "ERROR"
     end
