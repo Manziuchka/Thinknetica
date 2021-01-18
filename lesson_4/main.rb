@@ -108,6 +108,20 @@ class Main
     end
   end
 
+  # def display_station_trains!(station)
+  #   station.each_train do |train|
+  #     puts "Номер поезда: #{train.number}, Тип поезда: #{train.type}, Размер вагона: #{train.carriages.size}"
+  #     yield(train) if block_given?
+  #   end
+  # end
+
+  # def display_train_carriages(train)
+  #   train.each_carriage do |carriage|
+  #     puts "Номер вагона: #{carriage.number}, Тип: #{carriage.type}, Свободное место: #{carriage.free} Занятое место: #{carriage.occupied}"
+  #     yield(carriage) if block_given?
+  #   end
+  # end
+
   def show_all_trains
     @trains.each_with_index {|train, index| puts "#{index+1}. #{train.type} № #{train.number}"}
   end
@@ -197,11 +211,15 @@ class Main
     puts "Введите номер вагона"
     number_carriages = gets.chomp.to_i
     if choose == 1 
-      carriages = PassangerCarriages.new(number_carriages)
-      puts "Создан вагон типа #{carriages.type} с номером #{number_carriages}"
+      puts "Введите количество мест"
+      seat = gets.chomp.to_i
+      carriages = PassangerCarriages.new(number_carriages, seat)
+      puts "Создан вагон типа #{carriages.type} с номером #{number_carriages} и количеством мест #{seat}"
     elsif choose == 2
-      carriages = CargoCarriages.new(number_carriages)
-      puts "Создан вагон типа #{carriages.type} с номером #{number_carriages}"
+      puts "Введите объем поезда"
+      volume = gets.chomp.to_f
+      carriages = CargoCarriages.new(number_carriages, volume)
+      puts "Создан вагон типа #{carriages.type} с номером #{number_carriages} и объемом #{volume}"
     else
         puts "ERROR"
     end

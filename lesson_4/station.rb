@@ -48,6 +48,10 @@ class Station
     @trains.select {|train| train.type == type}
   end
 
+  # def each_train(&block) 
+  #   block_given? ? @trains.each { |train| block.call(train) } : trains
+  # end
+
   protected
   
   def validate!

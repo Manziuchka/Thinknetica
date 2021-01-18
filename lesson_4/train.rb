@@ -56,6 +56,10 @@ class Train
   def delete_carriages(carriages)
     @carriages.delete(carriages) if @speed == 0
   end
+
+  def each_carriage(&block)
+    block_given? ? carriages.each_with_index{|carriage, index| block.call(carriage, index)} : carriages
+  end
   
   def add_route(route)
     @route = route
