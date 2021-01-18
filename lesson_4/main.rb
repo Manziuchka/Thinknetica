@@ -108,19 +108,19 @@ class Main
     end
   end
 
-  # def display_station_trains!(station)
-  #   station.each_train do |train|
-  #     puts "Номер поезда: #{train.number}, Тип поезда: #{train.type}, Размер вагона: #{train.carriages.size}"
-  #     yield(train) if block_given?
-  #   end
-  # end
+  def display_station_trains!(station)
+    station.each_train do |train|
+      puts "Номер поезда: #{train.number}, Тип поезда: #{train.type}, Размер вагона: #{train.carriages.size}"
+      yield(train) if block_given?
+    end
+  end
 
-  # def display_train_carriages(train)
-  #   train.each_carriage do |carriage|
-  #     puts "Номер вагона: #{carriage.number}, Тип: #{carriage.type}, Свободное место: #{carriage.free} Занятое место: #{carriage.occupied}"
-  #     yield(carriage) if block_given?
-  #   end
-  # end
+  def display_train_carriages(train)
+    train.each_carriage do |carriage|
+      puts "Номер вагона: #{carriage.number}, Тип: #{carriage.type}, Свободное место: #{carriage.free} Занятое место: #{carriage.occupied}"
+      yield(carriage) if block_given?
+    end
+  end
 
   def show_all_trains
     @trains.each_with_index {|train, index| puts "#{index+1}. #{train.type} № #{train.number}"}
