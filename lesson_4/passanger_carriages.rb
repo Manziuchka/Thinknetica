@@ -1,15 +1,14 @@
 class PassangerCarriages < Carriages
   attr_reader :type, :free, :occupied
+  
+  ONE_SEAT = 1
 
-  def initialize(number, seat)
+  def initialize(number)
     super(number)
     @type = 'passanger'
-    @free = seat
-    @occupied = 0
   end
 
-  def take_place
-    @free -= 1
-    @occupied += 1
+  def take_seat
+    fill(ONE_SEAT)
   end
 end
