@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 require_relative 'instance_counter'
 
-class Station 
+class Station
   include InstanceCounter
   attr_reader :name, :trains
-  NAME = /^[a-z]{2,}/i
-        
+
+  NAME = /^[a-z]{2,}/i.freeze
+
   def initialize(name)
     @name = name
     validate!
@@ -12,15 +15,15 @@ class Station
     self.class.add_station(self)
     register_instance
   end
- 
+
   class << self
     attr_reader :stations
-  
+
     def add_station(station)
       @@stations ||= []
       @@stations << station
     end
-  
+
     def all_stations
       @@stations
     end
@@ -28,8 +31,8 @@ class Station
 
   def valid?
     validate!
-    rescue
-      false
+  rescue StandardError
+    false
   end
 
   def all_stations
@@ -45,16 +48,16 @@ class Station
   end
 
   def show_type_trains(type)
-    @trains.select {|train| train.type == type}
+    @trains.select { |train| train.type == type }
   end
 
-  def each_train(&block) 
+  def each_train(&block)
     block_given? ? @trains.each { |train| block.call(train) } : trains
   end
 
   protected
-  
+
   def validate!
-   raise StandardError, "Station name must include a-z characters" if name !~ NAME
+    raise StandardError, 'Station name must include a-z characters' if name !~ NAME
   end
-end 
+end

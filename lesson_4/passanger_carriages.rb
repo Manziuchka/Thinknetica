@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PassangerCarriages < Carriages
   attr_reader :type, :free, :occupied
-  
+
   ONE_SEAT = 1
 
   def initialize(number)

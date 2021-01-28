@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require_relative 'instance_counter'
 
 class Route
   include InstanceCounter
   attr_reader :stations
- 
+
   def initialize(first, last)
     @stations = [first, last]
     register_instance
@@ -18,10 +20,10 @@ class Route
   end
 
   def show_route
-   @stations.first.name + " --> " + @stations.last.name
+    "#{@stations.first.name} --> #{@stations.last.name}"
   end
 
   def show_all_stations
-    @stations.each_with_index {|station, index| puts "#{index+1}. #{station.name}"}
+    @stations.each_with_index { |station, index| puts "#{index + 1}. #{station.name}" }
   end
 end

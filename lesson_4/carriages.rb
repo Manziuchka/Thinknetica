@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require_relative 'manufacturer'
 
 class Carriages
   include Manufacturer
   attr_reader :number, :capacity, :filled_capacity
-  
+
   def initialize(number, capacity)
     @number = number
     @capacity = capacity
     @filled_capacity = 0
   end
-  
+
   def fill(capacity)
     validate_free!(capacity)
     self.filled_capacity += capacity
