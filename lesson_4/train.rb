@@ -62,7 +62,13 @@ class Train
   end
 
   def each_carriage(&block)
-    block_given? ? carriages.each_with_index { |carriage, index| block.call(carriage, index) } : carriages
+    if block_given?
+      carriages.each_with_index do |carriage, index|
+        block.call(carriage, index)
+      end
+    else
+      carriages
+    end
   end
 
   def add_route(route)

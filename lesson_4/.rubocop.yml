@@ -1,0 +1,12 @@
+AllCops:
+  Exclude:
+    - 'main.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassVars:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 99
