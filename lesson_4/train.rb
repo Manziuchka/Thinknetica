@@ -2,14 +2,18 @@
 
 require_relative 'manufacturer'
 require_relative 'instance_counter'
+require './validation'
 
 class Train
   include Manufacturer
   include InstanceCounter
+  include Validation
   attr_accessor :speed
   attr_reader :carriages, :station, :type, :route, :number
 
   TRAIN_NUMBER = /^[a-z0-9]{3}-*[a-z0-9]{2}$/i.freeze
+
+  validate :number, :format, TRAIN_NUMBER
 
   def initialize(number)
     @number = number
@@ -18,12 +22,6 @@ class Train
     @speed = 0
     self.class.add_new_train(self, number)
     register_instance
-  end
-
-  def valid?
-    validate!
-  rescue StandardError
-    false
   end
 
   class << self
@@ -112,10 +110,6 @@ class Train
   end
 
   private
-
-  def validate!
-    raise StandardError, 'Wrong train number' if number !~ TRAIN_NUMBER
-  end
 
   def current_station_index
     @route.stations.index(@station)

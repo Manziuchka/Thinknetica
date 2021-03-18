@@ -10,3 +10,6 @@ Style/ClassVars:
 
 Layout/LineLength:
   Max: 99
+
+Metrics/MethodLength:
+  Max: 15

@@ -51,14 +51,3 @@ module Validation
     true
   end
 end
-
-class Test
-  include Validation
-  include Accessors
-
-  attr_accessor_with_history :name
-
-  validate :name, :presence
-  validate :name, :format, /^[a-z]{3,}$/i
-  validate :name, :type, String
-end
