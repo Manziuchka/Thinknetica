@@ -42,8 +42,8 @@ module Accessors
   end
 end
 
-class Test
-  include Accessors
-  # attr_accessor_with_history :abc
-  strong_attr_accessor :abc, Test
-end
+# class Test
+#   include Accessors
+#   # attr_accessor_with_history :abc
+#   strong_attr_accessor :abc, Test
+# end
